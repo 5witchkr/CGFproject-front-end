@@ -38,6 +38,23 @@
             loginClick();
         }
 	}
+
+  async function testmailer () {
+    emailsend.update(joincunt => joincunt+1);
+		const res = await fetch('https://ee4b-58-141-212-168.ngrok.io/mailauth/testmailer', {
+        headers:{'Content-Type':'application/json'},
+			  method: 'POST',
+		    body: JSON.stringify({
+				email
+			})
+		})
+        const json = await res.json()
+		result = JSON.stringify(json)
+        alert(JSON.parse(result).resultMsg)
+        if (JSON.parse(result).resultCode == 11) {
+            console.log("err");
+        }
+	}
   
 
   </script>
@@ -59,7 +76,7 @@
             {/if}
           </div>
           {#if $emailsend == 0}
-          <button on:click={emailSendClick} class="btn btn-primary">인증번호 보내기</button>
+          <button on:click={testmailer} class="btn btn-primary">인증번호 보내기</button>
           {/if}
           {#if $emailsend == 1}
           <input type="text" placeholder="인증번호를 입력해주세요" bind:value={emailnumber} class="input input-bordered">
