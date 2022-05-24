@@ -13,19 +13,17 @@
   let result = null
 	
 	async function doLogin () {
-		const res = await fetch('http://127.0.0.1:3000/auth/signin', {
+		const res = await fetch('http://127.0.0.1:3000/auth/login', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
 				email,
-                password
+        password
 			})
 		})
-        const json = await res.json()
-		result = JSON.stringify(json)
-        alert(JSON.parse(result).resultMsg)
-        if (JSON.parse(result).resultCode == 12) {
-            login.update(()=>{return false});
+        const loginStatus = await res.status;
+        if (loginStatus == 201) {
+            signin.update(()=>{return false});
             mainpage.update(()=>{return true});
     }
 	}
@@ -52,7 +50,7 @@
             </div>
           </div>
           <div class="form-control mt-6">
-            <button class="btn btn-primary">로그인</button>
+            <button on:click={doLogin} class="btn btn-primary">로그인</button>
           </div>
         </div>
       </div>

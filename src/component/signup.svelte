@@ -8,12 +8,9 @@
         signup.update(()=>{return false});
         emailsend.update(()=>{return 0});
       }
-    function emailSendClick(){
-      emailsend.update(joincunt => joincunt+1);
-      }
 
     let email = ''
-    let emailnumber = ''
+    let mailcode = ''
     let nickname = ''
     let password = ''
     let company = false
@@ -21,7 +18,7 @@
 
 
 	async function doJoin () {
-		const res = await fetch('http://127.0.0.1:3000/auth/signup', {
+		const res = await fetch('http://127.0.0.1:3000/auth/join', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
@@ -31,17 +28,16 @@
         company
 			})
 		})
-        const json = await res.json()
-		result = JSON.stringify(json)
-        alert(JSON.parse(result).resultMsg)
-        if (JSON.parse(result).resultCode == 11) {
-            loginClick();
-        }
+    const JoinStatus = await res.status
+		if (JoinStatus == 201) {
+      signinClick();
+    }
 	}
 
-  async function testmailer () {
+
+  async function sendmailer () {
     emailsend.update(joincunt => joincunt+1);
-		const res = await fetch('https://ee4b-58-141-212-168.ngrok.io/mailauth/testmailer', {
+		const res = await fetch('http://127.0.0.1:3000/mailauth/sendmailer', {
         headers:{'Content-Type':'application/json'},
 			  method: 'POST',
 		    body: JSON.stringify({
@@ -56,6 +52,24 @@
         }
 	}
   
+  async function emailSendClick(){
+      emailsend.update(joincunt => joincunt+1);
+      const res = await fetch('http://127.0.0.1:3000/mailauth/mailcode', {
+        headers:{'Content-Type':'application/json'},
+			  method: 'POST',
+		    body: JSON.stringify({
+        email,
+				mailcode
+			})
+		})
+        const json = await res.json()
+		result = JSON.stringify(json)
+        alert(JSON.parse(result).resultMsg)
+        if (JSON.parse(result).resultCode == 11) {
+            console.log("err");
+        }
+        console.log(email,mailcode);
+      }
 
   </script>
 
@@ -76,10 +90,10 @@
             {/if}
           </div>
           {#if $emailsend == 0}
-          <button on:click={testmailer} class="btn btn-primary">인증번호 보내기</button>
+          <button on:click={sendmailer} class="btn btn-primary">인증번호 보내기</button>
           {/if}
           {#if $emailsend == 1}
-          <input type="text" placeholder="인증번호를 입력해주세요" bind:value={emailnumber} class="input input-bordered">
+          <input type="text" placeholder="인증번호를 입력해주세요" bind:value={mailcode} class="input input-bordered">
           <button on:click={emailSendClick} class="btn btn-primary">인증하기</button>
           {/if}
           {#if $emailsend == 2}
