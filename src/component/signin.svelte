@@ -13,7 +13,7 @@
   let result = null
 	
 	async function doLogin () {
-		const res = await fetch('http://127.0.0.1:3000/auth/login', {
+		const res = await fetch('http://127.0.0.1:8080/auth/login', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
@@ -22,6 +22,8 @@
 			})
 		})
         const loginStatus = await res.status;
+        const jwtToken = await res.body;
+        console.log(jwtToken);
         if (loginStatus == 201) {
             signin.update(()=>{return false});
             mainpage.update(()=>{return true});

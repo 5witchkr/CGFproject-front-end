@@ -15,26 +15,27 @@
 <div in:fade="{{ duration: 500 }}" class="drawer h-screen w-full rounded">
     <input id="my-drawer" type="checkbox" class="drawer-toggle">
     <div class="drawer-content">
-      <!-- Page content here -->
+
       <label for="my-drawer" class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">내 정보</label>
       <button on:click={postClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">글 작성</button>
       <div style="margin-top: 10vh;"></div>
       <div>my-project</div>
 
-
+      <!-- Page content here -->
       <div class="card w-96 bg-primary text-primary-content" style="width: auto; margin-top: 2vh;">
         <div class="card-body">
-          <h2 class="card-title">🚀홍길동's 포트폴리오</h2>
-          <p>🙂성실한 신입 개발자🙂</p>
+          <h2 class="card-title">🚀글제목</h2>
+          <p>🙂ㅎㅇㅎㅇ🙂</p>
           <div class="card-actions justify-end">
             <button class="btn">구경하기</button>
           </div>
         </div>
+        
     </div>
     <div class="card w-96 bg-primary text-primary-content" style="width: auto; margin-top: 2vh;">
         <div class="card-body">
-          <h2 class="card-title">🚀고양이's 포트폴리오</h2>
-          <p>😸😸프론트엔드 지망생😸😸</p>
+          <h2 class="card-title">🚀고양이</h2>
+          <p>😸😸야옹😸😸</p>
           <div class="card-actions justify-end">
             <button class="btn">구경하기</button>
           </div>

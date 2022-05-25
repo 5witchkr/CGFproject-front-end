@@ -64,7 +64,7 @@
   main {
     text-align: center;
     padding: 1em;
-    max-width: 240px;
+    max-width: 500px;
     margin: 0 auto;
   }
 
@@ -84,14 +84,16 @@
 	<link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </svelte:head>
 
-<main in:fly="{{ x: 150, duration: 1000 }}" out:fly="{{ x: 150, duration: 500 }}" style="color:lightgray;">
+<main in:fly="{{ x: 150, duration: 1000 }}" out:fly="{{ x: 150, duration: 500 }}" style="color:black;">
     <div style="margin-top: 20px;"></div>
+    <div style='background-color:#a3a3a3; border-radius:4%'>
     <h1 style="text-align:left; margin-left:20px">제목</h1>
-    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" style='background-color:lightgrey' />
   <h1 style="text-align:left; margin-left:20px">내용</h1>
-  <div id="editor"/>
+  <div id="editor" style='background-color:lightgrey'/>
   <div style="margin-top: 10px; display:flex; justify-content:space-between;">
   <button on:click={postCancel} class="btn btn-primary">취소하기</button>
   <button class="btn btn-primary">작성하기</button>
+</div>
 </div>
 </main>
