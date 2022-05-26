@@ -36,20 +36,20 @@
 
 
 
-    async function createPost () {
+  async function createPost() {
+    console.log(quill.root.innerHTML);
 		const res = await fetch('http://127.0.0.1:3000/post', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
-				nickname,
-                title,
-                content
+        title,
+        content: quill.root.innerHTML
 			})
 		})
         const loginStatus = await res.status;
         if (loginStatus == 201) {
-            signin.update(()=>{return false});
-            mainpage.update(()=>{return true});
+          createpage.update(()=>{return false});
+		      mainpage.update(()=>{return true});
     }
 	}
 
@@ -93,7 +93,7 @@
   <div id="editor" style='background-color:lightgrey'/>
   <div style="margin-top: 10px; display:flex; justify-content:space-between;">
   <button on:click={postCancel} class="btn btn-primary">취소하기</button>
-  <button class="btn btn-primary">작성하기</button>
+  <button on:click={createPost} class="btn btn-primary">작성하기</button>
 </div>
 </div>
 </main>

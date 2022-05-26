@@ -18,7 +18,7 @@
 
 
 	async function doJoin () {
-		const res = await fetch('http://127.0.0.1:8080/auth/join', {
+		const res = await fetch('https://0401-58-141-212-168.ngrok.io/auth/join', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
@@ -37,7 +37,7 @@
 
   async function sendmailer () {
     emailsend.update(joincunt => joincunt+1);
-		const res = await fetch('http://127.0.0.1:8080/mailauth/sendmailer', {
+		const res = await fetch('https://0401-58-141-212-168.ngrok.io/mailauth/sendmailer', {
         headers:{'Content-Type':'application/json'},
 			  method: 'POST',
 		    body: JSON.stringify({
@@ -54,7 +54,7 @@
   
   async function emailSendClick(){
       emailsend.update(joincunt => joincunt+1);
-      const res = await fetch('http://127.0.0.1:8080/mailauth/mailcode', {
+      const res = await fetch('https://0401-58-141-212-168.ngrok.io/mailauth/mailcode', {
         headers:{'Content-Type':'application/json'},
 			  method: 'POST',
 		    body: JSON.stringify({
