@@ -31,8 +31,8 @@
 
 
     let title = ''
-    let content = ''
-    let nickname = ''
+    let contents = ''
+    let nickname = '이제될껄'
 
 
 
@@ -40,10 +40,13 @@
     console.log(quill.root.innerHTML);
 		const res = await fetch('http://127.0.0.1:3000/post', {
             headers:{'Content-Type':'application/json'},
+            //cookie
+            credentials: 'include',
 			method: 'POST',
 			body: JSON.stringify({
+        nickname,
         title,
-        content: quill.root.innerHTML
+        contents: quill.root.innerHTML
 			})
 		})
         const loginStatus = await res.status;
@@ -88,7 +91,7 @@
     <div style="margin-top: 20px;"></div>
     <div style='background-color:#a3a3a3; border-radius:4%'>
     <h1 style="text-align:left; margin-left:20px">제목</h1>
-    <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" style='background-color:lightgrey' />
+    <input type="text" placeholder="Type here" bind:value={title} class="input input-bordered w-full max-w-xs" style='background-color:lightgrey' />
   <h1 style="text-align:left; margin-left:20px">내용</h1>
   <div id="editor" style='background-color:lightgrey'/>
   <div style="margin-top: 10px; display:flex; justify-content:space-between;">
