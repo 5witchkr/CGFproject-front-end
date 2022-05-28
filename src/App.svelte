@@ -18,7 +18,7 @@
 		<div class="display">
 		  	<div class="artboard artboard-demo phone-1">
 				
-				<!-- {#if $elapsed > 0}
+				{#if $elapsed > 0}
 				{#if $signin}
 				<Signin/>
 				{/if}
@@ -31,8 +31,8 @@
 				{/if}
 				{#if $createpage}
 				<Create/>
-				{/if} -->
-				<Detail/>
+				{/if}
+				<!-- <Detail/> -->
 
 				
 			</div>

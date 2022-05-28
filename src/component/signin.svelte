@@ -13,7 +13,7 @@
   let result = null
 	
 	async function doLogin () {
-		const res = await fetch('https://0401-58-141-212-168.ngrok.io/auth/login', {
+		const res = await fetch('http://127.0.0.1:3000/auth/login', {
             headers:{'Content-Type':'application/json'},
 			method: 'POST',
 			body: JSON.stringify({
