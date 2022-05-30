@@ -12,11 +12,6 @@
   let password = ''
   let result = null
 
-  // let setCookie = function(name,value,exp){
-  //   let date = new Date();
-  //   date.setTime(date.getTime() + exp*24*60*60*1000);
-  //   document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-  // }
 	
 	async function doLogin () {
 		const res = await fetch('http://127.0.0.1:3000/auth/login', {
