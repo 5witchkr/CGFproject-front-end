@@ -1,4 +1,6 @@
 <script>
+// import { onMount } from 'svelte';
+
   import { fade } from 'svelte/transition';
   import { mainpage,createpage } from "../store/writableStore.js";
 
@@ -8,6 +10,19 @@
 	}
 
 
+  $: posts = fetch(`http://127.0.0.1:3000/post`).then(response => response.json())
+// onMount(async () => {
+// 		const response = await fetch('http://127.0.0.1:3000/post', {
+//             mode: 'cors',
+//             //cookie
+//             credentials: 'include',
+//             headers:{'Content-Type':'application/json'}
+// 		});
+//     const data = await response.json();
+//     console.log(data);
+//   })
+
+//   posts = post;
 </script>
 
 
@@ -22,25 +37,22 @@
       <div>my-project</div>
 
       <!-- Page content here -->
-      <div class="card w-96 bg-primary text-primary-content" style="width: auto; margin-top: 2vh;">
-        <div class="card-body">
-          <h2 class="card-title">🚀글제목</h2>
-          <p>🙂ㅎㅇㅎㅇ🙂</p>
-          <div class="card-actions justify-end">
-            <button class="btn">구경하기</button>
-          </div>
-        </div>
-        
-    </div>
+    {#await posts}
+    <p>...Loading</p>
+    {:then posts }
+    {#each posts as article}
     <div class="card w-96 bg-primary text-primary-content" style="width: auto; margin-top: 2vh;">
         <div class="card-body">
-          <h2 class="card-title">🚀고양이</h2>
-          <p>😸😸야옹😸😸</p>
+          <h2 class="card-title">{article.title}</h2>
+          <p>{article.nickname}</p>
+          <p>{article.date}</p>
           <div class="card-actions justify-end">
             <button class="btn">구경하기</button>
           </div>
         </div>
     </div>
+    {/each}
+    {/await}
 
 
     </div> 
