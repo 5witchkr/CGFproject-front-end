@@ -32,7 +32,7 @@
 				{#if $createpage}
 				<Create/>
 				{/if}
-				<!-- <Detail/> -->
+				
 
 				
 			</div>
