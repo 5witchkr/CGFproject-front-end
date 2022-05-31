@@ -6,8 +6,10 @@
         createpage.update(()=>{return true});
             mainpage.update(()=>{return false});
       }
-  
-  
+let postId = "6295cd2fcc3e974c7af19723";
+$: detailPost = fetch(`http://127.0.0.1:3000/post/${postId}`,{
+  credentials: 'include',
+}).then(response => response.json())
   </script>
   
   
@@ -24,8 +26,12 @@
       <!-- Page content here -->
       
    <div style="width:auto; length:auto; background-color:black;">
-    <div>글제목</div>
-    <div>글내용</div>
+    {#await detailPost}
+    <p>...Loading</p>
+    {:then detailPost }
+    <div>{detailPost.title}</div>
+    <div>{@html detailPost.contents}</div>
+    {/await}
     <div></div>
    </div>
 
