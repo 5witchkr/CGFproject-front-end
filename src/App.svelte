@@ -5,7 +5,7 @@
 	import Create from "./component/createPost.svelte";
 	import Detail from "./component/detailPost.svelte";
 	import { elapsed } from "./store/readableStore";
-	import { signin, signup, mainpage, createpage } from "./store/writableStore.js";
+	import { signin, signup, mainpage, createpage, detailpage } from "./store/writableStore.js";
 	
 
 </script>
@@ -31,6 +31,9 @@
 				{/if}
 				{#if $createpage}
 				<Create/>
+				{/if}
+				{#if $detailpage}
+				<Detail/>
 				{/if}
 				
 
