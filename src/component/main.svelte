@@ -2,15 +2,17 @@
 // import { onMount } from 'svelte';
 
   import { fade } from 'svelte/transition';
-  import { mainpage,createpage } from "../store/writableStore.js";
+  import { mainpage,createpage, detailpage, detailId } from "../store/writableStore.js";
 
   function postClick(){
       createpage.update(()=>{return true});
 		  mainpage.update(()=>{return false});
 	}
 
+  //todo page num setting
+let page = 0;
 
-  $: posts = fetch(`http://127.0.0.1:3000/post`).then(response => response.json())
+  $: posts = fetch(`http://127.0.0.1:3000/post/page/${page}`).then(response => response.json())
 // onMount(async () => {
 // 		const response = await fetch('http://127.0.0.1:3000/post', {
 //             mode: 'cors',
@@ -23,6 +25,13 @@
 //   })
 
 //   posts = post;
+
+
+function postDetailClick(id){
+      detailId.update(()=>{return id});
+      detailpage.update(()=>{return true});
+		  mainpage.update(()=>{return false});
+	}
 </script>
 
 
@@ -47,7 +56,7 @@
           <p>{article.nickname}</p>
           <p>{article.date}</p>
           <div class="card-actions justify-end">
-            <button class="btn">구경하기</button>
+            <button on:click={postDetailClick(article._id)} class="btn">구경하기</button>
           </div>
         </div>
     </div>

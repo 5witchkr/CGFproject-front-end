@@ -1,13 +1,14 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { mainpage,createpage } from "../store/writableStore.js";
+    import { mainpage, detailId, detailpage } from "../store/writableStore.js";
   
     function postClick(){
-        createpage.update(()=>{return true});
-            mainpage.update(()=>{return false});
+        mainpage.update(()=>{return true});
+        detailpage.update(()=>{return false});
       }
-let postId = "6295cd2fcc3e974c7af19723";
-$: detailPost = fetch(`http://127.0.0.1:3000/post/${postId}`,{
+
+
+$: detailPost = fetch(`http://127.0.0.1:3000/post/${$detailId}`,{
   credentials: 'include',
 }).then(response => response.json())
   </script>
@@ -19,7 +20,7 @@ $: detailPost = fetch(`http://127.0.0.1:3000/post/${postId}`,{
     <div class="drawer-content">
 
       <label for="my-drawer" class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">내 정보</label>
-      <button on:click={postClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">글 작성</button>
+      <button on:click={postClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">돌아가기</button>
       <div style="margin-top: 10vh;"></div>
       <div>my-project</div>
 
