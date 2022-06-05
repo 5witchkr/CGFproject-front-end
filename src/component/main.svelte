@@ -2,10 +2,16 @@
 // import { onMount } from 'svelte';
 
   import { fade } from 'svelte/transition';
-  import { mainpage,createpage, detailpage, detailId } from "../store/writableStore.js";
+  import { mainpage,createpage, detailpage, detailId, userprofile, usernickname } from "../store/writableStore.js";
 
   function postClick(){
       createpage.update(()=>{return true});
+		  mainpage.update(()=>{return false});
+	}
+
+  function userprofileClick(){
+    usernickname.update(()=> {return "이제될껄"} )
+      userprofile.update(()=>{return true});
 		  mainpage.update(()=>{return false});
 	}
 
@@ -70,7 +76,7 @@ function postDetailClick(id){
       <ul class="menu p-4 overflow-y-auto w-40 bg-base-100 text-base-content">
         <!-- Sidebar content here -->
         <div class="flex flex-col w-full">
-            <button class="grid h-10 card bg-base-300 rounded-box place-items-center" style="margin-top: 5vh;">가입정보</button> 
+            <button on:click={userprofileClick} class="grid h-10 card bg-base-300 rounded-box place-items-center" style="margin-top: 5vh;">가입정보</button> 
             <div class="divider"></div> 
             <div class="grid h-10 card bg-base-300 rounded-box place-items-center">내 게시글</div>
             <div class="divider"></div> 

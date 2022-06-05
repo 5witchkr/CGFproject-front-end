@@ -4,8 +4,9 @@
 	import Main from "./component/main.svelte";
 	import Create from "./component/createPost.svelte";
 	import Detail from "./component/detailPost.svelte";
+	import UserProfile from "./component/userprofile.svelte";
 	import { elapsed } from "./store/readableStore";
-	import { signin, signup, mainpage, createpage, detailpage } from "./store/writableStore.js";
+	import { signin, signup, mainpage, createpage, detailpage, userprofile } from "./store/writableStore.js";
 	
 
 </script>
@@ -35,8 +36,11 @@
 				{#if $detailpage}
 				<Detail/>
 				{/if}
-				
+				{#if $userprofile}
+				<UserProfile/>
+				{/if}
 
+			
 				
 			</div>
 		</div>
