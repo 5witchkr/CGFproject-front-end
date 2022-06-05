@@ -1,14 +1,16 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { mainpage, detailId, detailpage } from "../store/writableStore.js";
+    import { mainpage, usernickname, userprofile } from "../store/writableStore.js";
   
     function postClick(){
         mainpage.update(()=>{return true});
-        detailpage.update(()=>{return false});
+        userprofile.update(()=>{return false});
       }
 
 
-$: detailPost = fetch(`http://127.0.0.1:3000/post/${$detailId}`,{
+
+
+$: detailuser = fetch(`http://127.0.0.1:3000/auth/${$usernickname}`,{
   credentials: 'include',
 }).then(response => response.json())
   </script>
@@ -27,11 +29,13 @@ $: detailPost = fetch(`http://127.0.0.1:3000/post/${$detailId}`,{
       <!-- Page content here -->
       
    <div style="width:auto; length:auto;">
-    {#await detailPost}
+    {#await detailuser}
     <p>...Loading</p>
-    {:then detailPost }
-    <div>{detailPost.title}</div>
-    <div>{@html detailPost.contents}</div>
+    {:then detailuser }
+    <div>{detailuser.profileImage}</div>
+    <div>{detailuser.email}</div>
+    <div>{detailuser.nickname}</div>
+    <div>{detailuser.company}</div>
     {/await}
     <div></div>
    </div>
