@@ -3,16 +3,9 @@
     import { mainpage, usernickname, userprofile, userproUpdatefile } from "../store/writableStore.js";
   
     function postClick(){
-        mainpage.update(()=>{return true});
-        userprofile.update(()=>{return false});
+        userprofile.update(()=>{return true});
+        userproUpdatefile.update(()=>{return false});
       }
-
-
-      function profileUpdateClick(){
-        userproUpdatefile.update(()=>{return true});
-        userprofile.update(()=>{return false});
-      }
-
 
 
 
@@ -28,14 +21,13 @@ $: detailuser = fetch(`http://127.0.0.1:3000/auth/${$usernickname}`,{
     <div class="drawer-content">
 
       <label for="my-drawer" class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">내 정보</label>
-      <button on:click={postClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">돌아가기</button>
+      <button on:click={postClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">취소하기</button>
       <div style="margin-top: 10vh;"></div>
       <div>my-project</div>
 
       <!-- Page content here -->
-      
+      <button class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">수정완료</button>
    <div style="width:auto; length:auto;">
-    <button on:click={profileUpdateClick} class="btn btn-primary drawer-button" style="margin-top:5vh; margin-left:1vh; float:left;">수정하기</button>
     {#await detailuser}
     <p>...Loading</p>
     {:then detailuser }
