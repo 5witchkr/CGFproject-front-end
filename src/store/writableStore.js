@@ -10,5 +10,7 @@ export let usernickname = writable(String);
 
 export let createpage = writable(false);
 export let detailpage = writable(false);
+
 export let userprofile = writable(false);
+export let userproUpdatefile = writable(false);
 
